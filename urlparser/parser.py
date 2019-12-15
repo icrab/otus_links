@@ -99,7 +99,7 @@ def print_recieved_links(links, recursive):
     
         return input_number_of_links
 
-    input_number_of_links = get_number_of_links()
+    input_number_of_links = get_number_of_links(links)
 
     for i,link in enumerate(links):
         if i < input_number_of_links:
