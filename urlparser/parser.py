@@ -83,18 +83,23 @@ def get_links(url, recursive):
 
 
 def print_recieved_links(links, recursive):
-    number_of_links = len(links) 
-    input_number_of_links = 0
+    def get_number_of_links(links):
+        number_of_links = len(links) 
+        input_number_of_links = 0
 
-    print(f'We get {len(links)} links. Enter numbers of links to display:')
-    while input_number_of_links == 0:
-        try: 
-            input_number_of_links = int(input())
-            if number_of_links < input_number_of_links:
-                input_number_of_links = 0
-                print(f'Entered number more then {number_of_links}, try again:')
-        except ValueError:
-            print('Need number')
+        print(f'We get {len(links)} links. Enter numbers of links to display:')
+        while input_number_of_links == 0:
+            try: 
+                input_number_of_links = int(input())
+                if number_of_links < input_number_of_links:
+                    input_number_of_links = 0
+                    print(f'Entered number more then {number_of_links}, try again:')
+            except ValueError:
+                print('Need number')
+    
+        return input_number_of_links
+
+    input_number_of_links = get_number_of_links()
 
     for i,link in enumerate(links):
         if i < input_number_of_links:
