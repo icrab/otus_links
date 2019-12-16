@@ -17,13 +17,13 @@ def get_url():
             print(message)
             try:
                 key = int(input())
+                if key == 3: exit()
             except ValueError:
                 print('ValueError')
             except KeyboardInterrupt:
                 print('KeyboardInterrupt, for exit press 3')
 
-        if key == 3: exit()
-        elif key == 1: return True
+        if key == 1: return True
         else: return False
 
     def choose_site():
