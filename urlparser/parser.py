@@ -87,7 +87,7 @@ def print_recieved_links(links, recursive):
         number_of_links = len(links) 
         input_number_of_links = 0
 
-        print(f'We get {len(links)} links. Enter numbers of links to display:')
+        print(f'Found {len(links)} links. Enter numbers of links to display:')
         while input_number_of_links == 0:
             try: 
                 input_number_of_links = int(input())
