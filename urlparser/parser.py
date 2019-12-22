@@ -4,6 +4,9 @@ from requests.exceptions import Timeout
 
 
 def get_url():
+    google = 'https://www.google.com/search?q='
+    yandex = 'https://yandex.ru/search/?text='
+
     def get_request():
         print('Enter search query:')
         request = str(input())
@@ -31,9 +34,9 @@ def get_url():
         choosen_site = key_controls(message)
 
         if choosen_site:
-            site = 'https://www.google.com/search?q='
+            site = google
         else:
-            site = 'https://yandex.ru/search/?text='
+            site = yandex 
 
         return site
 
@@ -62,6 +65,9 @@ def get_links(url, recursive):
         return links
     except Timeout:
         print('Timeout')
+        return links
+    except Exception:
+        print('Other trouble')
         return links
 
     dirty_links = page.split('href="')
