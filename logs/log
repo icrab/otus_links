@@ -1,0 +1,156 @@
+ERROR:urlparser:Error
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 29, in key_controls
+    key = int(input())
+ValueError: invalid literal for int() with base 10: 'asd'
+ERROR:urlparser:Error
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 29, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 35, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 35, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:asd
+NoneType: None
+ERROR:urlparser:text
+NoneType: None
+ERROR:urlparser:text
+NoneType: None
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:ValueError
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+ValueError: invalid literal for int() with base 10: 'asd'
+ERROR:urlparser:ValueError
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+ValueError: invalid literal for int() with base 10: 'asd'
+ERROR:urlparser:ValueError
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+ValueError: invalid literal for int() with base 10: 'asd'
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:ValueError
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+ValueError: invalid literal for int() with base 10: 'asd'
+ERROR:urlparser:ValueError
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+ValueError: invalid literal for int() with base 10: 'asd'
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:ValueError
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+ValueError: invalid literal for int() with base 10: ''
+ERROR:urlparser:ValueError
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+ValueError: invalid literal for int() with base 10: ''
+ERROR:urlparser:ValueError
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+ValueError: invalid literal for int() with base 10: 'asd'
+ERROR:urlparser:ValueError
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+ValueError: invalid literal for int() with base 10: 'asd'
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt
+ERROR:urlparser:KeyboardInterrupt
+Traceback (most recent call last):
+  File "/root/python/OTUS/otus_links/urlparser/parser.py", line 34, in key_controls
+    key = int(input())
+KeyboardInterrupt

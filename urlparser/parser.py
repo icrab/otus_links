@@ -1,9 +1,21 @@
+import logging
 import requests
 import re
+from bs4 import BeautifulSoup
 from requests.exceptions import Timeout
 
 
-def get_url():
+def start_logging():
+    logging.basicConfig(filename='logs/log', level=logging.INFO)
+    return logging.getLogger('urlparser')
+
+
+def print_and_logging_exception(log, *args):
+    log.exception(args[0])
+    print(', '.join(args))
+
+
+def get_url(log):
     google = 'https://www.google.com/search?q='
     yandex = 'https://yandex.ru/search/?text='
 
@@ -22,9 +34,9 @@ def get_url():
                 key = int(input())
                 if key == 3: exit()
             except ValueError:
-                print('ValueError')
+                print_and_logging_exception(log, 'ValueError')
             except KeyboardInterrupt:
-                print('KeyboardInterrupt, for exit press 3')
+                print_and_logging_exception(log, 'KeyboardInterrupt', 'for exit press 3')
 
         if key == 1: return True
         else: return False
@@ -54,28 +66,31 @@ def get_url():
     return url, recursive
 
 
-def get_links(url, recursive):
+def get_links(url, recursive, log):
     dirty_links = []
     links = []
 
     try:
         page = requests.get(url, timeout=5).text
     except requests.exceptions.ConnectionError:
-        print('ConnectionError')
+        print_and_logging_exception(log, 'ConnectionError')
         return links
     except Timeout:
-        print('Timeout')
+        print_and_logging_exception(log, 'Timeout')
         return links
     except Exception:
-        print('Other trouble')
+        print_and_logging_exception(log, 'OtherTrouble')
         return links
 
-    dirty_links = page.split('href="')
+    soup = BeautifulSoup(page, 'html.parser')
+
+    for link in soup.find_all('a', href=True):
+        dirty_links.append(link['href'])
 
     for dirty_link in dirty_links:
         dirty_link = re.sub(r'^.*http', 'http' , dirty_link)
         if re.match(r'(http|https)://', dirty_link) is not None:
-            links.append(re.sub(r'[\s\"<>\]].*', '', dirty_link))
+            links.append(dirty_link)
 
     if not recursive:
         return links
@@ -88,7 +103,7 @@ def get_links(url, recursive):
         return links + child_links
 
 
-def print_recieved_links(links, recursive):
+def print_recieved_links(links, recursive, log):
     def get_number_of_links(links):
         number_of_links = len(links) 
         input_number_of_links = 0
