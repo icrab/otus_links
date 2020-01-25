@@ -5,27 +5,36 @@ from bs4 import BeautifulSoup
 from requests.exceptions import Timeout
 
 
-def start_logging():
-    logging.basicConfig(filename='logs/log', level=logging.INFO)
-    return logging.getLogger('urlparser')
+class Log():
+    '''Class for logging'''
+    def __init__(self, path):
+        '''Init takes log file path'''
+        logging.basicConfig(filename=path, level=logging.INFO)
+        self.log = logging.getLogger('urlparser')
+
+    def print_and_logging_exception(self, *args):
+        '''Method for outputs and write exceptions to log'''
+        self.log.exception(args[0])
+        print(', '.join(args))
 
 
-def print_and_logging_exception(log, *args):
-    log.exception(args[0])
-    print(', '.join(args))
-
-
-def get_url(log):
+class Request():
+    '''Class to request setup'''
     google = 'https://www.google.com/search?q='
     yandex = 'https://yandex.ru/search/?text='
 
-    def get_request():
+    def __init__(self, log):
+        '''Init takes log file and gets search query'''
+        self.__log = log
         print('Enter search query:')
-        request = str(input())
+        self.__request = str(input())
+        self.__site = self.__choose_site()
+        self.recursive = self.__recursive_search()
+        self.url = self.__site + self.__request
 
-        return request
 
-    def key_controls(message):
+    def __key_controls(self, message):
+        '''Method to control keyboard input'''
         key = 0
 
         while key != 1 and key != 2:
@@ -34,78 +43,89 @@ def get_url(log):
                 key = int(input())
                 if key == 3: exit()
             except ValueError:
-                print_and_logging_exception(log, 'ValueError')
+                self.__log.print_and_logging_exception('ValueError')
             except KeyboardInterrupt:
-                print_and_logging_exception(log, 'KeyboardInterrupt', 'for exit press 3')
+                self.__log.print_and_logging_exception('KeyboardInterrupt', 'for exit press 3')
 
         if key == 1: return True
         else: return False
 
-    def choose_site():
+
+    def __choose_site(self):
+        '''Method to selection search site'''
         message = 'Press 1 for search in google.com or 2 for search in ya.ru. 3 for exit'
-        choosen_site = key_controls(message)
+        choosen_site = self.__key_controls(message)
 
         if choosen_site:
-            site = google
+            site = self.google
         else:
-            site = yandex 
+            site = self.yandex 
 
         return site
 
-    def recursive_search():
+
+    def __recursive_search(self):
+        '''Method to verify that recursion is requied'''
         message = 'Press 1 if you need recursive search or 2 if not. 3 for exit'
-        recursive = key_controls(message)
+        recursive = self.__key_controls(message)
 
         return recursive
 
-    request = get_request()
-    site = choose_site()
-    recursive = recursive_search()
-    url = site + request
 
-    return url, recursive
+class Urls():
+    '''Class to getting, processing and print urls'''
+    def __init__(self, request, log):
+        self.__log = log
+        self.links = self.get_links(request.url, request.recursive)
 
+    def get_links(self, url, recursive):
+        '''Method to gets links'''
+        links = []
 
-def get_links(url, recursive, log):
-    dirty_links = []
-    links = []
+        try:
+            page = requests.get(url, timeout=5).text
+        except requests.exceptions.ConnectionError:
+            self.__log.print_and_logging_exception('ConnectionError')
+            return links
+        except Timeout:
+            self.__log.print_and_logging_exception('Timeout')
+            return links
+        except Exception:
+            self.__log.print_and_logging_exception('OtherTrouble')
+            return links
 
-    try:
-        page = requests.get(url, timeout=5).text
-    except requests.exceptions.ConnectionError:
-        print_and_logging_exception(log, 'ConnectionError')
-        return links
-    except Timeout:
-        print_and_logging_exception(log, 'Timeout')
-        return links
-    except Exception:
-        print_and_logging_exception(log, 'OtherTrouble')
-        return links
+        links = self.__processing_links(page, links)
 
-    soup = BeautifulSoup(page, 'html.parser')
-
-    for link in soup.find_all('a', href=True):
-        dirty_links.append(link['href'])
-
-    for dirty_link in dirty_links:
-        dirty_link = re.sub(r'^.*http', 'http' , dirty_link)
-        if re.match(r'(http|https)://', dirty_link) is not None:
-            links.append(dirty_link)
-
-    if not recursive:
-        return links
-    else:
-        child_links = []
-        for link in links:
-            for child in get_links(link, False):
-                child_links.append(child)
+        if not recursive:
+            return links
+        else:
+            child_links = []
+            for link in links:
+                for child in self.get_links(link, False):
+                    child_links.append(child)
 
         return links + child_links
 
+    def __processing_links(self, page, links):
+        '''Method to processing links'''
+        dirty_links = []
 
-def print_recieved_links(links, recursive, log):
-    def get_number_of_links(links):
-        number_of_links = len(links) 
+        soup = BeautifulSoup(page, 'html.parser')
+
+        for link in soup.find_all('a', href=True):
+            dirty_links.append(link['href'])
+
+        for dirty_link in dirty_links:
+            dirty_link = re.sub(r'^.*http', 'http' , dirty_link)
+            if re.match(r'(http|https)://', dirty_link) is not None:
+                links.append(dirty_link)
+
+        return links
+
+
+    def __get_number_of_links(self, links):
+        '''Method to  get number of links'''
+        number_of_links = len(self.links) 
         input_number_of_links = 0
 
         print(f'Found {len(links)} links. Enter numbers of links to display:')
@@ -116,14 +136,17 @@ def print_recieved_links(links, recursive, log):
                     input_number_of_links = 0
                     print(f'Entered number more then {number_of_links}, try again:')
             except ValueError:
-                print('Need number')
-    
+                self.__log.print_and_logging_exception('ValueError', 'Need number')
+
         return input_number_of_links
 
-    input_number_of_links = get_number_of_links(links)
 
-    for i,link in enumerate(links):
-        if i < input_number_of_links:
-            print(i+1,'-',link)
+    def print(self):
+        '''Method to print links'''
+        input_number_of_links = self.__get_number_of_links(self.links)
+
+        for i,link in enumerate(self.links):
+            if i < input_number_of_links:
+                print(i+1,'-',link)
 
 
