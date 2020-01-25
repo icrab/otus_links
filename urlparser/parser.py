@@ -1,6 +1,7 @@
 import logging
 import requests
 import re
+import os.path
 from bs4 import BeautifulSoup
 from requests.exceptions import Timeout
 
@@ -9,6 +10,15 @@ class Log():
     '''Class for logging'''
     def __init__(self, path):
         '''Init takes log file path'''
+        if not os.path.exists(path):
+            try:
+               create_file = open(path, 'w')
+            except Exception:
+                print('failed to create logfile')
+                exit()
+
+            create_file.close()
+
         logging.basicConfig(filename=path, level=logging.INFO)
         self.log = logging.getLogger('urlparser')
 
